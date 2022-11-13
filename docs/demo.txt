@@ -1,0 +1,38 @@
+
+	- Core Java	
+		OOPS Concept
+	- Java - 8
+		Collection Framework
+		Lamda Function
+		Functional Interface
+		Stream API
+
+	- Spring
+		ioc/di
+		aop
+		web
+		jdbc
+
+	- SpringBoot
+		
+			A +display() -run time 
+		B	C	D
+		
+		@Autowired
+		@Qulifier(${})
+		A a;
+		a.display();
+
+		tightly couple code
+		loosely couple			
+		@Component
+		@Controller	@Service 	@Repository
+
+		
+	Get - read/list
+	Post - save
+	put - update
+	Delete	- delete 
+		
+		@RequestMapping("/",HttpMethod.GET)
+		@GetMapping("/")
