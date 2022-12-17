@@ -1,29 +1,48 @@
 package com.dbdemo.demo.service.impl;
 
+import java.util.List;import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dbdemo.demo.dto.StudentDTO;
-import com.dbdemo.demo.entity.Student;
+import com.dbdemo.demo.mapper.StudentMapper;
 import com.dbdemo.demo.repository.StudentRepository;
 import com.dbdemo.demo.service.StudentService;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	private StudentRepository studentRepository;
-	
+
+	@Autowired
+	private StudentMapper studentMapper;
+
 	@Override
 	public StudentDTO save(StudentDTO studentDTO) {
-		// TODO Auto-generated method stub
-		Student student = new Student();
-		student.setName(studentDTO.getName());
-		Student newStudent = studentRepository.save(student);
-		StudentDTO studentDTO2=new StudentDTO();
-		studentDTO2.setId(newStudent.getId());
-		studentDTO2.setName(newStudent.getName());
-		return studentDTO2;
+		return studentMapper.toDto(studentRepository.save(studentMapper.toEntity(studentDTO)));
+	}
+
+	@Override
+	public List<StudentDTO> list() {
+		return studentRepository.findAll().stream().map(studentMapper::toDto).collect(Collectors.toList());
+	}
+
+	@Override
+	public StudentDTO get(Long studentId) {
+		return studentMapper.toDto(studentRepository.findById(studentId).get());
+	}
+
+	@Override
+	public void delete(Long studentId) {
+		studentRepository.deleteById(studentId);
+	}
+
+	@Override
+	public StudentDTO update(StudentDTO studentDTO) {
+		return studentMapper.toDto(studentRepository.save(studentMapper.toEntity(studentDTO)));
 	}
 
 }
