@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add CSS and JS to Thymeleaf</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+   <p th:text="${customer.id}"></p>
+   <p th:text="${customer.name}" ></p>
+   <p th:text="${customer.city}" ></p>
+   <p th:text="${customer.mobileNo}" ></p>
+</body>
+</html>
